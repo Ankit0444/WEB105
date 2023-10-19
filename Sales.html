@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Vendor, Product, and Cart Tables</title>
+  <style>
+    table,tr,td{
+      border: 1px solid;
+      text-align: center;
+    }
+    th{
+      border: 1px solid;
+      background-color: black;
+      color: white;
+      
+    }
+    .center{
+      margin-left: auto;
+      margin-right: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1 style="text-align: center;">Vendor Table</h1>
+  <table id="vendor-table" class="center" style="width: 100%;">
+    <thead>
+      <tr>
+        <th>Vendor</th>
+        <th>Trade A</th>
+        <th>Trade B</th>
+        <th>Trade C</th>
+        <th>Trade D</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Vendor 1</td>
+        <td>12%</td>
+        <td>12%</td>
+        <td>N/A</td>
+        <td>6%</td>
+      </tr>
+      <tr>
+        <td>Vendor 2</td>
+        <td>10%</td>
+        <td>8%</td>
+        <td>20%</td>
+        <td>N/A</td>
+      </tr>
+      <tr>
+        <td>Vendor 3</td>
+        <td>N/A</td>
+        <td>25%</td>
+        <td>3%</td>
+        <td>16%</td>
+      </tr>
+      <tr>
+        <td>Vendor 4</td>
+        <td>9%</td>
+        <td>N/A</td>
+        <td>16%</td>
+        <td>30%</td>
+      </tr>
+      <tr>
+        <td>Vendor 5</td>
+        <td>5%</td>
+        <td>11%</td>
+        <td>N/A</td>
+        <td>30%</td>
+      </tr>
+      
+    </tbody>
+  </table>
+
+  <h1 style="text-align: center;">Product Table</h1>
+  <table id="product-table" class="center" style="width: 100%;">
+    <thead>
+      <tr>
+        <th>Sr. No</th>
+        <th>Product Name</th>
+        <th>Price</th>
+        <th>Tags</th>
+        <th>Vendor</th>
+        <th>Discount</th>
+        <th>Cart</th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+
+  <h1 style="text-align: center;">Cart Table</h1>
+  <table id="cart-table" class="center" style="width: 100%;">
+    <thead>
+      <tr>
+        <th>Sr. No</th>
+        <th>Product Name</th>
+        <th>Price</th>
+        <th>Discount</th>
+        <th>Final Price</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table><br>
+
+  <div id="total-price-container" style="text-align: center;">
+    <strong>Total Price: $<span id="total-price">0.00</span></strong>
+  </div>
+
+  <script>
+    const vendors = [
+      {
+        "vendor": "Vendor 1",
+        "Trade A": 12,
+        "Trade B": 12,
+        "Trade C": 0,
+        "Trade D": 6
+      },
+      {
+        "vendor": "Vendor 2",
+        "Trade A": 10,
+        "Trade B": 8,
+        "Trade C": 20,
+        "Trade D": 0
+      },
+      {
+        "vendor": "Vendor 3",
+        "Trade A": 0,
+        "Trade B": 25,
+        "Trade C": 3,
+        "Trade D": 16
+      },
+      {
+        "vendor": "Vendor 4",
+        "Trade A": 9,
+        "Trade B": 0,
+        "Trade C": 16,
+        "Trade D": 30
+      },
+      {
+        "vendor": "Vendor 5",
+        "Trade A": 5,
+        "Trade B": 11,
+        "Trade C":0,
+        "Trade D": 30
+      }
+      
+    ];
+
+    const products = [
+      {
+        "id": 1,
+        "name": "Test Product 1",
+        "price": 12.5,
+        "tags": ["Trade A"],
+        "vendor": "Vendor 5"
+      },
+      {
+        "id": 2,
+        "name": "Test Product2",
+        "price": 42.50,
+        "tags": ["Trade B"],
+		    "vendor": "Vendor 4"
+      },
+      {
+        "id": 3,
+        "name": "test product3",
+        "price": 200.00,
+        "tags": ["Trade C", "test"],
+		    "vendor":"Vendor 3",
+		    },
+    {
+        "id": 4,
+        "name": "test product4",
+        "price": 52.50,
+        "tags": ["Trade C", "test"],
+		    "vendor":"Vendor 2",
+		    },
+    {
+        "id": 5,
+        "name": "test product5",
+        "price": 712.50,
+        "tags": ["Trade D", "test"],
+		    "vendor":"Vendor 1",
+	    },
+    {
+        "id": 6,
+        "name": "test product6",
+        "price": 17.00,
+        "tags": ["Trade A", "test"],
+	    	"vendor":"Vendor 3",
+		  },
+    {
+        "id": 7,
+        "name": "test product7",
+        "price": 55.00,
+        "tags": ["Trade A", "test"],
+        "vendor":"Vendor 3",
+
+    },
+    {
+        "id": 8,
+        "name": "test product11",
+        "price": 37.00,
+        "tags": ["Trade D", "test"],
+		    "vendor":"Vendor 4",
+		    },
+    {
+        "id": 9,
+        "name": "test product9",
+        "price": 82.00,
+        "tags": ["Trade C", "test"],
+		    "vendor":"Vendor 4",
+		    },
+    {
+        "id": 10,
+        "name": "test product10",
+        "price": 52.00,
+        "tags": ["Trade B", "test"],
+		    "vendor":"Vendor 2",
+		    },
+    {
+        "id": 11,
+        "name": "test product22",
+        "price": 102.00,
+        "tags": ["Trade B", "test"],
+		    "vendor":"Vendor 1",
+		    },
+    {
+        "id": 12,
+        "name": "test product457",
+        "price": 172.50,
+        "tags": ["Trade B", "test"],
+		    "vendor":"Vendor 4",
+		    },
+    {
+        "id": 13,
+        "name": "test product15",
+        "price": 100.00,
+        "tags": ["Trade D", "test"],
+		    "vendor":"Vendor 5",
+		    },
+    {
+        "id": 14,
+        "name": "test product33",
+        "price": 99.50,
+        "tags": ["Trade D", "test"],
+		    "vendor":"Vendor 5",
+		   },
+    {
+        "id": 15,
+        "name": "test product85",
+        "price": 87.50,
+        "tags": ["Trade A", "test"],
+	      "vendor":"Vendor 5",
+		    },
+    {
+        "id": 16,
+        "name": "test product63",
+        "price": 57.00,
+        "tags": ["Trade A", "test"],
+		    "vendor":"Vendor 1",
+		    },
+    {
+        "id": 17,
+        "name": "test product74",
+        "price": 10.00,
+        "tags": ["Trade C", "test"],
+		    "vendor":"Vendor 2",
+		    },
+    {
+        "id": 18,
+        "name": "test product102",
+        "price": 412.50,
+        "tags": ["Trade D", "test"],
+		    "vendor":"Vendor 3",
+		     },
+    {
+        "id": 19,
+        "name": "test product358",
+        "price": 112.50,
+        "tags": ["Trade B", "test"],
+		    "vendor":"Vendor 4",
+		    },
+    {
+        "id": 20,
+        "name": "test product568",
+        "price": 102.00,
+        "tags": ["Trade B", "test"],
+		    "vendor":"Vendor 5",
+		    },
+    {
+        "id": 21,
+        "name": "test product475",
+        "price": 52.00,
+        "tags": ["Trade A", "test"],
+		    "vendor":"Vendor 3",
+		    },
+    {
+        "id": 22,
+        "name": "test product28",
+        "price": 32.00,
+        "tags": ["Trade C", "test"],
+	    	"vendor":"Vendor 2",
+	      },
+    {
+        "id": 23,
+        "name": "test product1405",
+        "price": 12.00,
+        "tags": ["Trade B", "test"],
+		    "vendor":"Vendor 4",
+		    },
+    {
+        "id": 24,
+        "name": "test product389",
+        "price": 584.50,
+        "tags": ["Trade D", "test"],
+		    "vendor":"Vendor 1",
+		
+    },
+    {
+        "id": 25,
+        "name": "test product555",
+        "price": 67.00,
+        "tags": ["Trade D", "test"],
+		    "vendor":"Vendor 5"
+    },
+    {
+        "id": 26,
+        "name": "test product444",
+        "price": 132.50,
+        "tags": ["Trade A", "test"],
+		    "vendor":"Vendor 5",
+		
+    },
+    {
+        "id": 27,
+        "name": "test product333",
+        "price": 42.50,
+        "tags": ["Trade B", "test"],
+		    "vendor":"Vendor 2",
+		
+    }
+    ];
+
+    const productTableBody = document.querySelector("#product-table tbody");
+    const cartTableBody = document.querySelector("#cart-table tbody");
+    const totalPriceElement = document.getElementById("total-price");
+
+    let totalPrice = 0;
+
+    function calculateDiscountedPrice(product) {
+      const vendor = vendors.find(v => v.vendor === product.vendor);
+      const trade = product.tags[0];
+      const discountPercentage = vendor[trade];
+      const discountedPrice = product.price * (1 - discountPercentage / 100);
+      return discountedPrice;
+    }
+
+    function addProductRow(product, index) {
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td>${index + 1}</td>
+        <td>${product.name}</td>
+        <td>$${product.price.toFixed(2)}</td>
+        <td>${product.tags[0]}</td>
+        <td>${product.vendor}</td>
+        <td>${vendors.find(v => v.vendor === product.vendor)[product.tags[0]]}%</td>
+        <td><button style="width:100% ;background-color:green" onclick="addToCart(${product.id}, '${product.name}', ${product.price}, '${product.tags[0]}', '${product.vendor}')">Add to Cart</button></td>
+      `;
+      productTableBody.appendChild(row);
+    }
+
+    function addToCart(productId, productName, price, trade, vendor) {
+      const discountedPrice = calculateDiscountedPrice({ price, tags: [trade], vendor });
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td>${cartTableBody.children.lengt  + 1}</td>
+        <td>${productName}</td>
+        <td>$${price.toFixed(2)}</td>
+        <td>${vendors.find(v => v.vendor === vendor)[trade]}%</td>
+        <td>$${discountedPrice.toFixed(2)}</td>
+        <td><button style="width:100% ;background-color:red" onclick="deleteCartItem(this, ${discountedPrice})">Remove Cart</button></td>
+      `;
+      cartTableBody.appendChild(row);
+
+      // Update the total price
+      totalPrice += discountedPrice;
+      totalPriceElement.textContent = totalPrice.toFixed(2);
+    }
+
+    function deleteCartItem(button, itemPrice) {
+      const row = button.parentNode.parentNode;
+      cartTableBody.removeChild(row);
+
+      // Update the total price
+      totalPrice -= itemPrice;
+      totalPriceElement.textContent = totalPrice.toFixed(2);
+    }
+
+    products.forEach((product, index) => {
+      addProductRow(product, index);
+    });
+  </script>
+</body>
+</html>
